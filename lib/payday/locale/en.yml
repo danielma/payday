@@ -15,6 +15,7 @@ en:
       tax: "Tax:"
       total: "Total:"
     line_item:
+      item: Item
       description: Description
       unit_price: Unit Price
       quantity: Quantity

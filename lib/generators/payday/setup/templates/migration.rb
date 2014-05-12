@@ -11,6 +11,7 @@ class CreatePaydayTables < ActiveRecord::Migration
     create_table :<%= options.line_item_name.pluralize.underscore.split("/").last %> do |t|
       t.decimal :price
       t.string :description
+      t.string :item
       t.integer :quantity     # can also be :decimal or :float - just needs to be numeric
 
       t.references :<%= options.invoice_name.underscore %>

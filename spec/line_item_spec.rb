@@ -16,6 +16,11 @@ module Payday
       li = LineItem.new(:description => "12 Pairs of Pants")
       expect(li.description).to eq("12 Pairs of Pants")
     end
+    
+    it "is able to be initialized with an item" do
+      li = LineItem.new(:item => "Pants")
+      expect(li.item).to eq("Pants")
+    end
 
     it "should return the correct amount" do
       li = LineItem.new(:price => 10, :quantity => 12)

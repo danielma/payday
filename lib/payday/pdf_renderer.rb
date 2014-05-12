@@ -176,12 +176,14 @@ module Payday
 
       def self.line_items_table(invoice, pdf)
         table_data = []
-        table_data << [bold_cell(pdf, I18n.t('payday.line_item.description', :default => "Description"), :borders => []),
+        table_data << [bold_cell(pdf, I18n.t('payday.line_item.item', :default => "Item"), :borders => []),
+            bold_cell(pdf, I18n.t('payday.line_item.description', :default => "Description"), :borders => []),
             bold_cell(pdf, I18n.t('payday.line_item.unit_price', :default => "Unit Price"), :align => :center, :borders => []),
             bold_cell(pdf, I18n.t('payday.line_item.quantity', :default => "Quantity"), :align => :center, :borders => []),
             bold_cell(pdf, I18n.t('payday.line_item.amount', :default => "Amount"), :align => :center, :borders => [])]
         invoice.line_items.each do |line|
-          table_data << [line.description,
+          table_data << [line.item,
+                         line.description,
                          (line.display_price || number_to_currency(line.price, invoice)),
                          (line.display_quantity || BigDecimal.new(line.quantity.to_s).to_s("F")),
                          number_to_currency(line.amount, invoice)]
@@ -192,11 +194,13 @@ module Payday
             :cell_style => {:border_width => 0.5, :border_color => "cccccc", :padding => [5, 10]},
             :row_colors => ["dfdfdf", "ffffff"]) do
           # left align the number columns
-          columns(1..3).rows(1..row_length - 1).style(:align => :right)
+          columns(2..4).rows(1..row_length - 1).style(:align => :right)
 
           # set the column widths correctly
           natural = natural_column_widths
-          natural[0] = width - natural[1] - natural[2] - natural[3]
+          others = natural.dup
+          others.delete_at(1)
+          natural[1] = width - others.inject(:+)
 
           column_widths = natural
         end

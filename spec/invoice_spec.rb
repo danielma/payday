@@ -150,9 +150,9 @@ module Payday
           Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
 
           invoice.line_items += [
-            LineItem.new(:price => 20, :quantity => 5, :description => "Pants"),
-            LineItem.new(:price => 10, :quantity => 3, :description => "Shirts"),
-            LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+            LineItem.new(:item => "Pants", :price => 20, :quantity => 5, :description => "Levis 511 - 30x32"),
+            LineItem.new(:item => "Shirts", :price => 10, :quantity => 3, :description => "BDG Small v-neck"),
+            LineItem.new(:item => "Hats", :price => 5, :quantity => 200, :description => "Fedora")
           ] * 30
 
           expect(invoice.render_pdf).to match_binary_asset 'testing.pdf'
@@ -168,9 +168,9 @@ module Payday
 
         it 'should render an invoice correctly' do
           invoice.line_items += [
-            LineItem.new(:price => 20, :quantity => 5, :description => "Pants"),
-            LineItem.new(:price => 10, :quantity => 3, :description => "Shirts"),
-            LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
+            LineItem.new(:item => "Pants", :price => 20, :quantity => 5, :description => "Levis 511 - 30x32"),
+            LineItem.new(:item => "Shirts", :price => 10, :quantity => 3, :description => "BDG Small v-neck"),
+            LineItem.new(:item => "Hats", :price => 5, :quantity => 200, :description => "Fedora")
           ] * 3
 
           expect(invoice.render_pdf).to match_binary_asset 'svg.pdf'
