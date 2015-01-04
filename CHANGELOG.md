@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Next Release
+
+* Bumped money gem to 6.5 (was 6.1.1)
+* Bumped i18n gem to 0.7 (was 0.6.11)
+
+## 1.1.3 (2015-01-02)
+
+* Loosened requirements on Money gem.
+* Bumped rspec to latest and cleared up a deprecation warning.
+* Added support for `invoice_date` field (thanks [danielma](https://github.com/danielma)!)
+* Bugfix: Resolved issue where money values were being shown at 1/100th of the intended amount (thanks [watsonbox](https://github.com/watsonbox)!)
+
 ## 1.1.2 (2014-05-03)
 
 * Added NL locale (thanks [jedi4ever](https://github.com/jedi4ever)!).
